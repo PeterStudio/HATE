@@ -172,20 +172,15 @@
     NSDictionary * params = nil;
     if ([@"0" isEqualToString:_onekeyTranType]) {
         hashStr = [NSString stringWithFormat:@"%@%@%@%@%@",_userId,[_bankType stringFromMD5],_accName,_onekeyTranType,MD5KEY];
-        params = @{@"userId":_userId,@"bankType":[_bankType stringFromMD5],@"accName":_accName,@"onekeyTranType":_onekeyTranType,@"hash":hashStr};
+        params = @{@"userId":_userId,@"bankType":_bankType,@"accName":_accName,@"onekeyTranType":_onekeyTranType,@"hash":hashStr};
     }else{
         hashStr = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",_userId,[_bankType stringFromMD5],_accName,_onekeyTranType,_certType,_certNo,MD5KEY];
-        params = @{@"userId":_userId,@"bankType":[_bankType stringFromMD5],@"accName":_accName,@"onekeyTranType":_onekeyTranType,@"certType":_certType,@"certNo":_certNo,@"hash":hashStr};
+        params = @{@"userId":_userId,@"bankType":_bankType,@"accName":_accName,@"onekeyTranType":_onekeyTranType,@"certType":_certType,@"certNo":_certNo,@"hash":hashStr};
     }
     // 发送POST请求
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer =  [AFHTTPResponseSerializer serializer];
     [manager POST:HTTP_sign_URL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        
-        NSLog(@"完成 %@", result);
-        
-//        BaseModel * demoModel = [[BaseModel alloc] initWithDictionary:responseObject error:nil];
         if (success) {
             success(responseObject);
         }
@@ -194,5 +189,8 @@
             failure(error);
         }
     }];
+    
+    
 }
+
 @end

@@ -9,7 +9,7 @@
 #import "SignBankViewController.h"
 #import "UserSystemService.h"
 
-@interface SignBankViewController ()<UIPickerViewDelegate,UIPickerViewDataSource>{
+@interface SignBankViewController ()<UIPickerViewDelegate,UIPickerViewDataSource,UIWebViewDelegate>{
     int typeIndex;
 }
 @property (nonatomic, strong) NSArray * typeArray;
@@ -106,19 +106,32 @@
         typeIndex = 0;
     }
     
+    // test
+//    self.uId = @"6";
+//    checkStr = @"姚礼飞";
+//    typeIndex = 0;
+//    certNum = @"15";
+//    str1 = @"320123198807160613";
+    //
+    
+    
     [SVProgressHUD showWithStatus:@"签约中" maskType:SVProgressHUDMaskTypeClear];
     [_service request_Sign_Http_userId:self.uId bankType:@"comm" accName:checkStr onekeyTranType:[NSString stringWithFormat:@"%d",typeIndex] certType:certNum certNo:str1 success:^(id responseObject) {
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        UIWebView * webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight)];
+//        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+//        NSStringEncoding gbkEncoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+//        NSString*pageSource = [[NSString alloc] initWithData:responseObject encoding:gbkEncoding];
+        
+        
+        UIWebView * webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, UIScreenWidth, UIScreenHeight - 64)];
+        [webView setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:webView];
         [self.view bringSubviewToFront:webView];
-        
-        NSURL *url =[NSURL URLWithString:result];
-        NSURLRequest *request =[NSURLRequest requestWithURL:url];
-        [webView loadRequest:request];
-        
+        webView.delegate = self;
+        [webView loadData:responseObject MIMEType:nil textEncodingName:nil baseURL:nil];
 
-        [self performSelector:@selector(popRoot) withObject:nil afterDelay:3.5];
+//        [self performSelector:@selector(popRoot) withObject:nil afterDelay:3.5];
+        
 //        BaseModel * demoModel = (BaseModel *)responseObject;
 //        if ([RETURN_CODE_SUCCESS isEqualToString:demoModel.retcode]) {
 //            [SVProgressHUD showSuccessWithStatus:demoModel.retinfo];
@@ -134,6 +147,23 @@
 
 - (void)popRoot{
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+
+}
+// 网页加载完成的时候调用
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [SVProgressHUD dismiss];
+//    [self performSelector:@selector(popRoot) withObject:nil afterDelay:2.5];
+}
+// 网页加载出错的时候调用
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [SVProgressHUD dismiss];
+    NSLog(@"error=%@",error);
+//    [self performSelector:@selector(popRoot) withObject:nil afterDelay:2.5];
 }
 
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>314BE0CD-140C-4D67-BD14-6B4A2BE03168</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HATE</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>482C8F525E02AFDB3E167B1297FDA254F33A6F6A</key>
+		<string>https://github.com/PeterStudio/HATE.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HATE.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>482C8F525E02AFDB3E167B1297FDA254F33A6F6A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PeterStudio/HATE.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>482C8F525E02AFDB3E167B1297FDA254F33A6F6A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>482C8F525E02AFDB3E167B1297FDA254F33A6F6A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HATE</string>
+		</dict>
+	</array>
+</dict>
+</plist>
